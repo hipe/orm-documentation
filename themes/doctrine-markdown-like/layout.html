@@ -36,6 +36,21 @@
   </div>
 {%- endmacro %}
 
+{%- macro top1() %}
+  <div id="top1">
+    <div class="content">
+      You are currently reading the <strong>2.0</strong> documentation.
+      Switch to <a href="/projects/orm/1.2/docs/en">1.2</a>&nbsp;
+      <div id="top1_right">
+        <ul>
+          <li><a target="_top" href="/projects/orm/download">Download</a></li>
+          <li><a target="_top" href="/projects/orm/1.2/docs/en">Documentation</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+{%- endmacro %}
+
 {%- macro relbar() %}
     <div class="related">
       <h3>{{ _('Navigation') }}</h3>
@@ -193,6 +208,8 @@
 {%- block header %}{{ header() }}{% endblock %}
 
 {%- block topnav %}{{ topnav() }}{% endblock %}
+
+{{ top1() }}
 
 {%- block relbar1 %}{{ relbar() }}{% endblock %}
 

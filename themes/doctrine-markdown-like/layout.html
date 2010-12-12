@@ -17,6 +17,25 @@
   </div>
 {%- endmacro %}
 
+{% macro topnav() %}
+  <div id="nav" class="cls">
+    <div class="tl cls">
+      <ul>
+        <li><a class="" target="_top" href="/">home</a></li>
+        <li><a class="" target="_top" href="/about">about</a></li>
+        <li><a class="" target="_top" href="/projects">projects</a></li>
+        <li><a class="current" target="_top" href="/projects/orm">orm</a></li>
+        <li><a class="" target="_top" href="/projects/dbal">dbal</a></li>
+        <li><a class="" target="_top" href="/blog">blog</a></li>
+        <li><a class="" target="_top" href="http://www.doctrine-project.org/jira">development</a></li>
+        <li><a class="" target="_top" href="/contribute">contribute</a></li>
+        <li><a class="" target="_top" href="/community">community</a></li>
+        <li><a class="" target="_top" href="http://wiki.doctrine-project.org">wiki</a></li>
+      </ul>
+    </div>
+  </div>
+{%- endmacro %}
+
 {%- macro relbar() %}
     <div class="related">
       <h3>{{ _('Navigation') }}</h3>
@@ -112,8 +131,11 @@
       {%- set titlesuffix = "" %}
     {%- endif %}
     <title>{{ title|striptags }}{{ titlesuffix }}</title>
+
+    {# get these out of the way for now
     <link rel="stylesheet" href="{{ pathto('_static/' + style, 1) }}" type="text/css" />
     <link rel="stylesheet" href="{{ pathto('_static/pygments.css', 1) }}" type="text/css" />
+    #}
 
     <link rel="stylesheet" href="{{ pathto('_static/css/main.css', 1) }}" type="text/css" />{# exactly from site #}
     <link rel="stylesheet" href="{{ pathto('_static/css/layout.css', 1) }}" type="text/css" />{# exactly from site #}
@@ -169,6 +191,8 @@
   <body>
     <div id='wrapper'> {# for reskin #}
 {%- block header %}{{ header() }}{% endblock %}
+
+{%- block topnav %}{{ topnav() }}{% endblock %}
 
 {%- block relbar1 %}{{ relbar() }}{% endblock %}
 

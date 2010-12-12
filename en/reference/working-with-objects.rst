@@ -113,8 +113,8 @@ from newly opened EntityManager.
     
     $article = $em->find('Article', 1);
 
-This code only retrieves the ``User`` instance with id 1 executing
-a single SELECT statement against the user table in the database.
+This code only retrieves the ``Article`` instance with id 1 executing
+a single SELECT statement against the article table in the database.
 You can still access the associated properties author and comments
 and the associated objects they contain.
 

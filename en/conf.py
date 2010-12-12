@@ -81,7 +81,8 @@ exclude_trees = ['_build']
 show_authors = True
 
 # The name of the Pygments (syntax highlighting) style to use.
-pygments_style = 'sphinx'
+# pygments_style = 'sphinx'
+# (the above is now specified in the custom theme folder's theme.conf)
 
 # A list of ignored prefixes for module index sorting.
 #modindex_common_prefix = []
@@ -91,8 +92,9 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  Major themes that come with
 # Sphinx are currently 'default' and 'sphinxdoc'.
-html_theme = 'default'
-# to build the 'new' theme, `sphinx-build -D html_theme=doctrine-markdown-like ..`
+# html_theme = 'default'
+# to build the 'old' (sphinx default-styled) theme, `sphinx-build -D html_theme=doctrine-sphinx-orig en ../public-old`
+# to build the 'new' theme, `sphinx-build -D html_theme=doctrine-markdown-like en ../public-new`
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the

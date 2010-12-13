@@ -95,6 +95,7 @@ show_authors = True
 # html_theme = 'default'
 # to build the 'old' (sphinx default-styled) theme, `sphinx-build -D html_theme=doctrine-sphinx-orig en ../public-old`
 # to build the 'new' theme, `sphinx-build -D html_theme=doctrine-markdown-like en ../public-new`
+html_theme = 'doctrine-sphinx-orig'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the

@@ -109,12 +109,16 @@
 
 {%- macro chapter_nav() -%}
   <div class="chapter-nav">
+    {%- if prev %}
     <div class="previous">
-      <a href='#'>&lt;&lt; The Previous Chapter</a>
+      <a href="{{ prev.link|e }}">&lt;&lt; {{ prev.title }}</a>
     </div>
+    {%- endif %}
+    {%- if next %}
     <div class="next">
-      <a href='#'>The Next Chapter &gt;&gt;</a>
+      <a href="{{ next.link|e }}">{{ next.title }} &gt;&gt;</a>
     </div>
+    {%- endif %}
   </div>
 {%- endmacro -%}
 

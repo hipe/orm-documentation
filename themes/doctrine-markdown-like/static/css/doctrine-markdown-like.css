@@ -1,0 +1,26 @@
+/* this file is a home for any and all styles needed to integrate the
+   sphinx-generated pages in with the doctrine site.
+   we don't want to touch documentation.css, which is outside the
+   scope of this sub-project.
+*/
+
+#searchbox p.searchtip {
+  font-size: smaller;
+  line-height: 1.3em;
+  margin-left: 21px;
+  padding-top: 0.65em;
+}
+
+#searchbox {
+  margin-left: 16px;
+}
+
+#searchbox h3 {
+  font-size: 93% !important;
+  margin-left: 4px !important;
+  padding-bottom: 6px !important;
+}
+
+#searchbox form {
+  padding-left: 20px;
+}

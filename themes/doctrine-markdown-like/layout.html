@@ -76,16 +76,29 @@
         <ul class="tree">
           <li><a class="expander" href="#">+</a><a href="#">Introduction</a></li>
         </ul>
+        {%- if display_toc %}
         <hr />
           {{ toctree() }}
         <hr />
           {{ toc }}
+        {%- endif %}
         <hr />
+        {%- block sidebar_source_link %}{{ sidebar_source_link() }}{%- endblock %}
       </div>
       <div class="ft"></div>
     </div>
   </div>
 {%- endmacro -%}
+
+{%- macro sidebar_source_link() %}
+  {%- if show_source and has_source and sourcename %}
+    <ul class="this-page-menu">
+      <li>
+        <a href="{{ pathto('_sources/' + sourcename, true)|e }}" rel="nofollow">{{ _('Show Sphinx Source') }}</a>
+      </li>
+    </ul>
+  {%- endif %}
+{%- endmacro %}
 
 {%- macro breadcrumb_trail() -%}
   <ul id="breadcrumb_trail">

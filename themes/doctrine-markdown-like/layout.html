@@ -1,13 +1,22 @@
 {%- block doctype -%}
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 {%- endblock %}
+{#
+
+    For this reskinning, and where reasonable, macros have been made that
+    correspond to the div sections of the site.  As such, macros created
+    for this reskinning will generally have names that correspond to the
+    div's id or class attribute.
+
+    Macros that were here when the reskinning started will probably be
+    left here for reference and for any necessary regressions/testing.
+
+#}
 {%- set reldelim1 = reldelim1 is not defined and ' &raquo;' or reldelim1 %}
 {%- set reldelim2 = reldelim2 is not defined and ' |' or reldelim2 %}
 {%- set url_root = pathto('', 1) %}
 {%- if url_root == '#' %}{% set url_root = '' %}{% endif %}
-
-{%- macro header() %}
+{%- macro header() -%}
   <div id="header">
     {# @todo the below should change dynamically per page #}
     <h1 id="h1title">PHP Object Persistence Libraries and More</h1>
@@ -15,9 +24,9 @@
       <a href="/">Doctrine - PHP Database Libraries</a>
     </div>
   </div>
-{%- endmacro %}
+{%- endmacro -%}
 
-{% macro topnav() %}
+{%- macro topnav() -%}
   <div id="nav" class="cls">
     <div class="tl cls">
       <ul>
@@ -34,9 +43,9 @@
       </ul>
     </div>
   </div>
-{%- endmacro %}
+{%- endmacro -%}
 
-{%- macro top1() %}
+{%- macro top1() -%}
   <div id="top1">
     <div class="content">
       You are currently reading the <strong>2.0</strong> documentation.
@@ -49,7 +58,115 @@
       </div>
     </div>
   </div>
-{%- endmacro %}
+{%- endmacro -%}
+
+{%- macro content() -%}
+  <div id="content" class="cls">
+    {{ site_sidebar() }}
+    {{ breadcrumb_trail() }}
+    {{ documentation() }}
+  </div>
+{%- endmacro -%}
+
+{%- macro site_sidebar() -%}
+  <div id="sidebar">
+    <div class="cls">
+      <div class="bd cls">
+        <h2>Table of Contents</h2>
+        <ul class="tree">
+          <li><a class="expander" href="#">+</a><a href="#">Introduction</a></li>
+        </ul>
+        <hr />
+          {{ toctree() }}
+        <hr />
+          {{ toc }}
+        <hr />
+      </div>
+      <div class="ft"></div>
+    </div>
+  </div>
+{%- endmacro -%}
+
+{%- macro breadcrumb_trail() -%}
+  <ul id="breadcrumb_trail">
+    <li><a href="/">Home</a></li>
+    <li><a href="/projects">Projects</a></li>
+
+    <li><a href="/projects/orm">Object Relational Mapper</a></li>
+    <li class="last">{{ title }}</li>
+  </ul>
+{%- endmacro -%}
+
+{%- macro documentation() -%}
+  <div id="documentation">
+    {{ chapter_nav() }}
+    {{ chapter()     }}
+    {{ chapter_nav() }}
+    <br style="clear: both"/>
+    {{ help() }}
+  </div>
+{%- endmacro -%}
+
+{%- macro chapter_nav() -%}
+  <div class="chapter-nav">
+    <div class="previous">
+      <a href='#'>&lt;&lt; The Previous Chapter</a>
+    </div>
+    <div class="next">
+      <a href='#'>The Next Chapter &gt;&gt;</a>
+    </div>
+  </div>
+{%- endmacro -%}
+
+{%- macro help() -%}
+  <div id="help">
+    <h3>Questions and Feedback</h3>
+    If you find a problem with the documentation or have a suggestion, please
+    <a href="http://www.doctrine-project.org/jira">register</a> and open a ticket.
+    <br/>
+    <br/>
+    If you need support or have a technical question, you can post to the
+    <a href="http://groups.google.com/group/doctrine-user">user mailing-list</a>.
+  </div>
+{%- endmacro -%}
+
+{%- macro chapter() -%}
+  <div class="chapter">
+    <h1>Hallo this is a heading</h1>
+    <div class="section">
+      <h2>
+        <a id="some-id-todo" href="#some-id-todo">Some Little Section Heading</a>
+      </h2>
+      <p>
+        First we need to make sure that you can run Doctrine on your server. We can do this one of two ways:
+      </p>
+      <p>
+        First create a small PHP script named <tt>phpinfo.php</tt> and upload it somewhere on your
+        web server that is accessible to the web:
+      </p>
+      {{ body }}
+    </div>
+  </div>
+{%- endmacro -%}
+
+{%- macro site_footer() -%}
+  <div id="footer">
+    <br />
+    <a href="http://www.servergrove.com" target="_BLANK">
+      <img src="{{ pathto('_static/images/servergrove.jpg', 1) }}" />
+    </a>
+    <br />
+    <br />
+    <form method="post" action="https://www.paypal.com/cgi-bin/webscr">
+      <input type="hidden" value="_s-xclick" name="cmd" />
+      <input type="hidden" value="BAE2E3XANQ77Y" name="hosted_button_id" />
+      <input border="0" type="image" alt="PayPal - The safer, easier way to pay online!" name="submit" src="{{ pathto('_static/images/_paypal/btn_donateCC_LG.gif', 1) }}" />
+      <img width="1" height="1" border="0" src="{{ pathto('_static/images/_paypal/pixel.gif', 1) }}" alt="">
+    </form>
+  </div>
+{%- endmacro -%}
+
+{# -- old macros from sphinx before reskinning below -- #}
 
 {%- macro relbar() %}
     <div class="related">
@@ -134,7 +251,24 @@
         </div>
       </div>
       {%- endif %}{% endif %}
-{%- endmacro %}
+{%- endmacro -%}
+
+{%- macro footer() -%}
+  <div class="footer">
+  {%- if hasdoc('copyright') %}
+    {% trans path=pathto('copyright'), copyright=copyright|e %}&copy; <a href="{{ path }}">Copyright</a> {{ copyright }}.{% endtrans %}
+  {%- else %}
+    {% trans copyright=copyright|e %}&copy; Copyright {{ copyright }}.{% endtrans %}
+  {%- endif %}
+  {%- if last_updated %}
+    {% trans last_updated=last_updated|e %}Last updated on {{ last_updated }}.{% endtrans %}
+  {%- endif %}
+  {%- if show_sphinx %}
+    {% trans sphinx_version=sphinx_version|e %}Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> {{ sphinx_version }}.{% endtrans %}
+  {%- endif %}
+  </div>
+{%- endmacro -%}
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
@@ -154,6 +288,7 @@
 
     <link rel="stylesheet" href="{{ pathto('_static/css/main.css', 1) }}" type="text/css" />{# exactly from site #}
     <link rel="stylesheet" href="{{ pathto('_static/css/layout.css', 1) }}" type="text/css" />{# exactly from site #}
+    <link rel="stylesheet" href="{{ pathto('_static/css/documentation.css', 1) }}" type="text/css" />{# exactly from site #}
 
     {%- if not embedded %}
     <script type="text/javascript">
@@ -204,53 +339,50 @@
 {%- block extrahead %} {% endblock %}
   </head>
   <body>
-    <div id='wrapper'> {# for reskin #}
-{%- block header %}{{ header() }}{% endblock %}
+    <div id='wrapper'>
+{%- block header  %}{{ header()  }}{% endblock %}
 
-{%- block topnav %}{{ topnav() }}{% endblock %}
+{%- block topnav  %}{{ topnav()  }}{% endblock %}
 
-{{ top1() }}
+{%- block top1    %}{{ top1()    }}{% endblock %}
 
-{%- block relbar1 %}{{ relbar() }}{% endblock %}
+{%- block content %}{{ content() }}{% endblock %}
 
-{%- block sidebar1 %} {# possible location for sidebar #} {% endblock %}
+  <div id="bot-rcnr"><div class="tl"></div></div>
 
-    <div class="document">
-{%- block document %}
-      <div class="documentwrapper">
-      {%- if not embedded %}{% if not theme_nosidebar|tobool %}
-        <div class="bodywrapper">
-      {%- endif %}{% endif %}
-          <div class="body">
-            {% block body %} {% endblock %}
+{%- block footer %}{{ site_footer() }}{% endblock %}
+
+{# out of the way for now
+
+  {%- block relbar1 %}{{ relbar() }}{% endblock %}
+
+  {%- block sidebar1 %}{% endblock %}
+
+  {%- block }
+      <div class="document">
+  {%- block document %}
+        <div class="documentwrapper">
+        {%- if not embedded %}{% if not theme_nosidebar|tobool %}
+          <div class="bodywrapper">
+        {%- endif %}{% endif %}
+            <div class="body">
+              {% block body %} {% endblock %}
+            </div>
+        {%- if not embedded %}{% if not theme_nosidebar|tobool %}
           </div>
-      {%- if not embedded %}{% if not theme_nosidebar|tobool %}
+        {%- endif %}{% endif %}
         </div>
-      {%- endif %}{% endif %}
+  {%- endblock %}
+
+  {%- block sidebar2 %}{{ sidebar() }}{% endblock %}
+        <div class="clearer"></div>
       </div>
-{%- endblock %}
 
-{%- block sidebar2 %}{{ sidebar() }}{% endblock %}
-      <div class="clearer"></div>
-    </div>
+  {%- block relbar2 %}{{ relbar() }}{% endblock %}
 
-{%- block relbar2 %}{{ relbar() }}{% endblock %}
+  {%- block footer %}{{ footer() }}{% endblock -%}
 
-{%- block footer %}
-    <div class="footer">
-    {%- if hasdoc('copyright') %}
-      {% trans path=pathto('copyright'), copyright=copyright|e %}&copy; <a href="{{ path }}">Copyright</a> {{ copyright }}.{% endtrans %}
-    {%- else %}
-      {% trans copyright=copyright|e %}&copy; Copyright {{ copyright }}.{% endtrans %}
-    {%- endif %}
-    {%- if last_updated %}
-      {% trans last_updated=last_updated|e %}Last updated on {{ last_updated }}.{% endtrans %}
-    {%- endif %}
-    {%- if show_sphinx %}
-      {% trans sphinx_version=sphinx_version|e %}Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> {{ sphinx_version }}.{% endtrans %}
-    {%- endif %}
-    </div>
-{%- endblock %}
-  </div> {# #wrapper #}
+out of the way for now #}
+  </div>
   </body>
 </html>

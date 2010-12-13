@@ -84,6 +84,7 @@
         {%- endif %}
         <hr />
         {%- block sidebar_source_link %}{{ sidebar_source_link() }}{%- endblock %}
+        {%- block site_sidebar_search %}{{ site_sidebar_search() }}{%- endblock %}
       </div>
       <div class="ft"></div>
     </div>
@@ -97,6 +98,24 @@
         <a href="{{ pathto('_sources/' + sourcename, true)|e }}" rel="nofollow">{{ _('Show Sphinx Source') }}</a>
       </li>
     </ul>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro site_sidebar_search() %}
+  {%- if pagename != "search" %}
+    <div id="searchbox" style="display: none">
+      <h3>{{ _('Quick search') }}</h3>
+        <form class="search" action="{{ pathto('search') }}" method="get">
+          <input type="text" name="q" size="18" />
+          <input type="submit" value="{{ _('Go') }}" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+        <p class="searchtip">
+        {{ _('Enter search terms or a module, class or function name.') }}
+        </p>
+    </div>
+    <script type="text/javascript">$('#searchbox').show(0);</script>
   {%- endif %}
 {%- endmacro %}
 
@@ -307,6 +326,7 @@
     <link rel="stylesheet" href="{{ pathto('_static/css/main.css', 1) }}" type="text/css" />{# exactly from site #}
     <link rel="stylesheet" href="{{ pathto('_static/css/layout.css', 1) }}" type="text/css" />{# exactly from site #}
     <link rel="stylesheet" href="{{ pathto('_static/css/documentation.css', 1) }}" type="text/css" />{# exactly from site #}
+    <link rel="stylesheet" href="{{ pathto('_static/css/doctrine-markdown-like.css', 1) }}" type="text/css" />{# our own #}
 
     {%- if not embedded %}
     <script type="text/javascript">
